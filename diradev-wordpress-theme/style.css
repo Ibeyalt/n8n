@@ -1,0 +1,387 @@
+/*
+Theme Name: DiraDev
+Theme URI: https://diradev.com
+Author: DiraDev
+Author URI: https://diradev.com
+Description: Thème WordPress sur mesure pour DiraDev — sites web & applications, marketing digital, agents IA, sourcing produit international. Compatible Elementor.
+Version: 1.0.0
+Requires at least: 5.8
+Requires PHP: 7.4
+License: GPL v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: diradev
+*/
+
+/* ==========================================================================
+   Réglages généraux
+   ========================================================================== */
+
+:root {
+	--dr-bg: #0e120f;
+	--dr-bg-elev: #151a16;
+	--dr-ink: #f5f7ef;
+	--dr-ink-dim: #a9b3a6;
+	--dr-paper: #f5f7ef;
+	--dr-paper-ink: #12140f;
+	--dr-line: rgba(245, 247, 239, 0.1);
+	--dr-accent: #baff29;
+	--dr-radius: 20px;
+	--dr-container: 1180px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+	margin: 0;
+	background: var(--dr-bg);
+	color: var(--dr-ink);
+	font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .dr-disp {
+	font-family: 'Space Grotesk', system-ui, sans-serif;
+	font-weight: 700;
+	line-height: 1.15;
+	margin: 0 0 0.5em;
+}
+
+p { margin: 0 0 1em; color: var(--dr-ink-dim); line-height: 1.7; }
+
+a { color: var(--dr-accent); text-decoration: none; }
+a:hover { color: #d6ff7a; }
+
+img { max-width: 100%; height: auto; display: block; }
+
+.dr-container {
+	max-width: var(--dr-container);
+	margin: 0 auto;
+	padding: 0 24px;
+}
+
+.dr-section { padding: 96px 0; }
+@media (max-width: 782px) { .dr-section { padding: 56px 0; } }
+
+.dr-eyebrow {
+	display: inline-block;
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 1px;
+	color: var(--dr-accent);
+	text-transform: uppercase;
+	margin-bottom: 16px;
+}
+
+/* ==========================================================================
+   Boutons
+   ========================================================================== */
+
+.dr-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	border-radius: 100px;
+	padding: 15px 28px;
+	font-weight: 700;
+	font-size: 14px;
+	border: none;
+	cursor: pointer;
+	transition: transform .15s ease, opacity .15s ease;
+	font-family: inherit;
+}
+.dr-btn:hover { transform: translateY(-2px); opacity: .92; color: inherit; }
+.dr-btn-primary { background: var(--dr-accent); color: var(--dr-paper-ink); }
+.dr-btn-primary:hover { color: var(--dr-paper-ink); }
+.dr-btn-ghost { background: transparent; border: 1px solid rgba(245,247,239,.25); color: var(--dr-ink); }
+.dr-btn-ghost:hover { color: var(--dr-ink); }
+.dr-btn-dark { background: var(--dr-paper-ink); color: var(--dr-ink); }
+.dr-btn-dark:hover { color: var(--dr-ink); }
+
+/* ==========================================================================
+   En-tête / navigation
+   ========================================================================== */
+
+.dr-header {
+	position: sticky;
+	top: 0;
+	z-index: 500;
+	background: rgba(14, 18, 15, .92);
+	backdrop-filter: blur(8px);
+	border-bottom: 1px solid var(--dr-line);
+}
+.dr-header-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 18px 0;
+	gap: 24px;
+}
+.dr-logo { display: flex; align-items: center; gap: 10px; color: var(--dr-ink); }
+.dr-logo:hover { color: var(--dr-ink); }
+.dr-logo-mark {
+	width: 32px; height: 32px;
+	border-radius: 9px;
+	background: var(--dr-accent);
+	display: flex; align-items: center; justify-content: center;
+	font-family: 'Space Grotesk'; font-weight: 700; font-size: 16px; color: var(--dr-paper-ink);
+	flex: 0 0 auto;
+}
+.dr-logo-mark img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+.dr-logo-text { font-family: 'Space Grotesk'; font-weight: 700; font-size: 19px; letter-spacing: .3px; }
+
+.dr-nav-menu { display: flex; align-items: center; gap: 34px; list-style: none; margin: 0; padding: 0; }
+.dr-nav-menu li a {
+	color: var(--dr-ink-dim);
+	font-size: 15px;
+	font-weight: 500;
+	scroll-margin-top: 90px;
+}
+.dr-nav-menu li a:hover, .dr-nav-menu li.current-menu-item a { color: var(--dr-ink); }
+
+.dr-nav-toggle {
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	gap: 5px;
+	width: 40px; height: 40px;
+	border-radius: 50%;
+	border: 1px solid rgba(245,247,239,.25);
+	background: transparent;
+	cursor: pointer;
+}
+.dr-nav-toggle span { width: 16px; height: 1.5px; background: var(--dr-ink); margin: 0 auto; }
+
+@media (max-width: 900px) {
+	.dr-nav-toggle { display: flex; }
+	.dr-nav-menu {
+		position: absolute;
+		top: 100%; left: 0; right: 0;
+		flex-direction: column;
+		align-items: flex-start;
+		background: var(--dr-bg-elev);
+		border-bottom: 1px solid var(--dr-line);
+		padding: 20px 24px;
+		gap: 16px;
+		display: none;
+	}
+	.dr-nav-menu.is-open { display: flex; }
+	.dr-header-cta { display: none; }
+}
+
+/* ==========================================================================
+   Héros
+   ========================================================================== */
+
+.dr-hero { padding: 72px 0 96px; }
+.dr-hero-inner { display: flex; align-items: center; gap: 64px; }
+.dr-hero-copy { flex: 1 1 0; min-width: 0; }
+.dr-hero h1 { font-size: 54px; letter-spacing: -1px; margin-bottom: 24px; }
+.dr-hero h1 .dr-accent-text { color: var(--dr-accent); }
+.dr-hero-lead { font-size: 17px; max-width: 520px; margin-bottom: 36px; }
+.dr-hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.dr-hero-visual { flex: 0 0 440px; position: relative; width: 440px; height: 440px; }
+.dr-hero-glow { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 50% 45%, rgba(186,255,41,.16), rgba(186,255,41,0) 68%); }
+.dr-hero-ring { position: absolute; left: 36px; top: 36px; right: 36px; bottom: 36px; border-radius: 50%; border: 2px dashed rgba(186,255,41,.4); animation: dr-spin 44s linear infinite; }
+.dr-hero-photo {
+	position: absolute; left: 120px; top: 120px; width: 200px; height: 200px;
+	border-radius: 50%; overflow: hidden; border: 3px solid var(--dr-accent);
+	box-shadow: 0 0 0 10px rgba(186,255,41,.08);
+}
+.dr-hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+.dr-hero-chip {
+	position: absolute; width: 60px; height: 60px; border-radius: 50%;
+	background: var(--dr-paper); display: flex; align-items: center; justify-content: center;
+	box-shadow: 0 8px 20px rgba(0,0,0,.35);
+	animation: dr-float 4.5s ease-in-out infinite;
+}
+.dr-hero-chip svg { width: 24px; height: 24px; stroke: var(--dr-paper-ink); fill: none; stroke-width: 1.6; }
+.dr-hero-chip-1 { left: 24px; top: 56px; animation-delay: 0s; }
+.dr-hero-chip-2 { right: 8px; top: 92px; animation-delay: .7s; }
+.dr-hero-chip-3 { left: 8px; bottom: 88px; animation-delay: 1.4s; }
+.dr-hero-chip-4 { right: 24px; bottom: 52px; animation-delay: 2.1s; }
+.dr-hero-badge {
+	position: absolute; left: 50%; bottom: -8px; transform: translateX(-50%);
+	display: flex; align-items: center; gap: 10px;
+	background: var(--dr-paper); border-radius: 16px; padding: 13px 18px;
+	box-shadow: 0 10px 30px rgba(0,0,0,.4); white-space: nowrap;
+}
+.dr-hero-badge span.dr-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--dr-accent); display: inline-block; }
+.dr-hero-badge span.dr-label { font-family: 'Space Grotesk'; font-weight: 600; font-size: 13px; color: var(--dr-paper-ink); }
+
+@keyframes dr-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes dr-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+@media (max-width: 980px) {
+	.dr-hero-inner { flex-direction: column; }
+	.dr-hero-visual { width: 100%; max-width: 360px; height: auto; aspect-ratio: 1/1; }
+	.dr-hero h1 { font-size: 38px; }
+}
+
+/* ==========================================================================
+   Bandeau des pôles
+   ========================================================================== */
+
+.dr-pillars {
+	background: var(--dr-bg-elev);
+	border-radius: var(--dr-radius);
+	padding: 32px 40px;
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 24px;
+}
+.dr-pillar { display: flex; align-items: center; gap: 14px; color: var(--dr-ink); }
+.dr-pillar:hover { color: var(--dr-ink); }
+.dr-pillar svg { width: 26px; height: 26px; stroke: var(--dr-accent); fill: none; stroke-width: 1.6; flex: 0 0 auto; }
+.dr-pillar-name { font-family: 'Space Grotesk'; font-weight: 600; font-size: 15px; }
+.dr-pillar-meta { font-size: 13px; color: var(--dr-ink-dim); }
+
+@media (max-width: 782px) { .dr-pillars { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .dr-pillars { grid-template-columns: 1fr; } }
+
+/* ==========================================================================
+   Mission
+   ========================================================================== */
+
+.dr-mission { display: flex; gap: 56px; align-items: flex-start; }
+.dr-mission-copy { flex: 0 0 400px; }
+.dr-mission-copy h2 { font-size: 34px; }
+.dr-mission-panels { flex: 1 1 0; display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; }
+.dr-mission-panel {
+	border-radius: var(--dr-radius);
+	border: 1px solid var(--dr-line);
+	position: relative; overflow: hidden; min-height: 300px;
+}
+.dr-mission-panel.a { background: linear-gradient(160deg, #1a231b, #0e120f 70%); }
+.dr-mission-panel.b { background: linear-gradient(200deg, #151a16, #0e120f); margin-top: 40px; display: flex; align-items: center; justify-content: center; }
+.dr-mission-panel.b svg { width: 42px; height: 42px; stroke: var(--dr-accent); fill: none; stroke-width: 1.5; }
+.dr-mission-tag {
+	position: absolute; left: 20px; bottom: 20px;
+	background: var(--dr-paper); color: var(--dr-paper-ink);
+	font-family: 'Space Grotesk'; font-weight: 600; font-size: 13px;
+	padding: 10px 16px; border-radius: 12px;
+}
+
+@media (max-width: 980px) {
+	.dr-mission { flex-direction: column; }
+	.dr-mission-copy { flex: none; }
+	.dr-mission-panels { grid-template-columns: 1fr; width: 100%; }
+	.dr-mission-panel.b { margin-top: 0; }
+}
+
+/* ==========================================================================
+   Services
+   ========================================================================== */
+
+.dr-services-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 48px; flex-wrap: wrap; }
+.dr-services-head h2 { font-size: 36px; max-width: 620px; }
+.dr-services-head p { max-width: 320px; margin: 0; }
+
+.dr-services-layout { display: flex; gap: 48px; align-items: stretch; flex-wrap: wrap; }
+.dr-services-list { flex: 1 1 420px; }
+
+.dr-service-row {
+	display: flex; align-items: center; justify-content: space-between;
+	padding: 24px 0; border-top: 1px solid var(--dr-line); color: var(--dr-ink); gap: 16px;
+}
+.dr-service-row:hover { color: var(--dr-ink); }
+.dr-service-row:last-child { border-bottom: 1px solid var(--dr-line); }
+.dr-service-left { display: flex; align-items: baseline; gap: 20px; }
+.dr-service-num { font-family: 'Space Grotesk'; font-weight: 700; font-size: 15px; color: var(--dr-accent); }
+.dr-service-name { font-family: 'Space Grotesk'; font-weight: 600; font-size: 20px; }
+.dr-service-arrow {
+	width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(245,247,239,.25);
+	display: flex; align-items: center; justify-content: center; flex: 0 0 auto;
+	transition: background .15s ease;
+}
+.dr-service-arrow svg { width: 16px; height: 16px; stroke: var(--dr-ink); fill: none; stroke-width: 2; }
+.dr-service-row:hover .dr-service-arrow { background: var(--dr-accent); }
+.dr-service-row:hover .dr-service-arrow svg { stroke: var(--dr-paper-ink); }
+
+.dr-services-cards { flex: 0 0 320px; display: flex; flex-direction: column; gap: 20px; }
+.dr-service-callout {
+	border-radius: var(--dr-radius); padding: 26px;
+	display: flex; flex-direction: column; justify-content: space-between; flex: 1;
+	color: var(--dr-paper-ink);
+}
+.dr-service-callout:hover { color: var(--dr-paper-ink); }
+.dr-service-callout.light { background: var(--dr-paper); }
+.dr-service-callout.accent { background: var(--dr-accent); }
+.dr-service-callout h4 { font-size: 17px; margin-bottom: 8px; }
+.dr-service-callout p { font-size: 14px; color: rgba(18,20,15,.75); margin: 0; }
+.dr-service-callout-icon {
+	margin-top: 18px; width: 44px; height: 44px; border-radius: 50%;
+	background: var(--dr-paper-ink); display: flex; align-items: center; justify-content: center;
+}
+.dr-service-callout-icon svg { width: 18px; height: 18px; stroke: var(--dr-accent); fill: none; stroke-width: 2; }
+.dr-service-callout.accent .dr-service-callout-icon svg { stroke: var(--dr-ink); }
+
+/* ==========================================================================
+   Bandeau slogan
+   ========================================================================== */
+
+.dr-tagline {
+	display: flex; align-items: center; justify-content: center; gap: 24px;
+	padding: 56px 24px; border-top: 1px solid var(--dr-line); border-bottom: 1px solid var(--dr-line);
+	flex-wrap: wrap; text-align: center;
+}
+.dr-tagline span.word { font-family: 'Space Grotesk'; font-weight: 700; font-size: 38px; }
+.dr-tagline svg { width: 24px; height: 24px; stroke: var(--dr-accent); fill: none; stroke-width: 2.4; }
+
+/* ==========================================================================
+   Process
+   ========================================================================== */
+
+.dr-process-head { text-align: center; margin-bottom: 48px; }
+.dr-process-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.dr-process-card { background: var(--dr-bg-elev); border-radius: var(--dr-radius); padding: 28px 22px; }
+.dr-process-num { font-family: 'Space Grotesk'; font-weight: 700; font-size: 14px; color: var(--dr-accent); margin-bottom: 18px; }
+.dr-process-card h4 { font-size: 17px; margin-bottom: 8px; }
+.dr-process-card p { font-size: 13px; margin: 0; }
+
+@media (max-width: 782px) { .dr-process-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .dr-process-grid { grid-template-columns: 1fr; } }
+
+/* ==========================================================================
+   Appel à l'action final
+   ========================================================================== */
+
+.dr-cta { background: var(--dr-accent); border-radius: 28px; padding: 64px 56px; position: relative; overflow: hidden; }
+.dr-cta-blob { position: absolute; right: -60px; top: -60px; width: 240px; height: 240px; border-radius: 50%; background: rgba(18,20,15,.08); }
+.dr-cta-content { max-width: 600px; position: relative; }
+.dr-cta h2 { font-size: 36px; color: var(--dr-paper-ink); margin-bottom: 16px; }
+.dr-cta p { color: rgba(18,20,15,.75); margin-bottom: 28px; }
+
+/* ==========================================================================
+   Pied de page
+   ========================================================================== */
+
+.dr-footer { padding: 80px 0 40px; }
+.dr-footer-top { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; padding-bottom: 48px; border-bottom: 1px solid var(--dr-line); }
+.dr-footer-about { max-width: 320px; }
+.dr-footer-about p { font-size: 14px; }
+.dr-footer-columns { display: flex; gap: 60px; flex-wrap: wrap; }
+.dr-footer-col h5 { font-family: 'Space Grotesk'; font-weight: 600; font-size: 14px; color: var(--dr-ink); margin-bottom: 16px; }
+.dr-footer-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.dr-footer-col a, .dr-footer-col span { color: var(--dr-ink-dim); font-size: 14px; }
+.dr-footer-cta-link { color: var(--dr-accent) !important; font-weight: 600; }
+.dr-footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 22px; flex-wrap: wrap; gap: 8px; font-size: 13px; color: #6b7167; }
+
+/* ==========================================================================
+   Pages standard (page.php / single.php)
+   ========================================================================== */
+
+.dr-page { padding: 64px 0 96px; }
+.dr-page h1 { font-size: 38px; }
+.dr-page .entry-content { color: var(--dr-ink-dim); }
+.dr-page .entry-content a { text-decoration: underline; }
+
+/* ==========================================================================
+   Animations au scroll
+   ========================================================================== */
+
+.dr-reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s cubic-bezier(.16,.84,.44,1), transform .7s cubic-bezier(.16,.84,.44,1); }
+.dr-reveal.is-visible { opacity: 1; transform: none; }

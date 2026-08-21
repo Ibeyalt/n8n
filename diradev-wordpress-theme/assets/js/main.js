@@ -1,7 +1,16 @@
 ( function () {
 	'use strict';
 
-	document.addEventListener( 'DOMContentLoaded', function () {
+	// Ce script est chargé en pied de page (après le HTML) : le DOM est déjà prêt,
+	// donc on exécute directement, sans attendre "DOMContentLoaded" (qui, à ce
+	// stade, s'est déjà déclenché et ne se redéclenchera jamais — un écouteur
+	// posé ici resterait sinon inerte, ce qui rendait le menu et les animations
+	// silencieusement inactifs).
+	function init() {
+
+		// Ne cache/anime le contenu que si ce script s'exécute réellement :
+		// sans cette classe, tout reste visible par défaut (voir style.css).
+		document.documentElement.classList.add( 'dr-js' );
 
 		/* Menu mobile */
 		var toggle = document.querySelector( '.dr-nav-toggle' );
@@ -44,7 +53,17 @@
 		reveals.forEach( function ( el, index ) {
 			el.style.transitionDelay = ( index % 4 ) * 0.08 + 's';
 			io.observe( el );
-		} );
 
-	} );
+			// Filet de sécurité : si un élément n'entre jamais dans le viewport
+			// (page très courte, robot, etc.), on l'affiche quand même après 3s
+			// plutôt que de le laisser invisible indéfiniment.
+			setTimeout( function () { el.classList.add( 'is-visible' ); }, 3000 );
+		} );
+	}
+
+	if ( document.readyState === 'loading' ) {
+		document.addEventListener( 'DOMContentLoaded', init );
+	} else {
+		init();
+	}
 } )();

@@ -39,16 +39,35 @@ function diradev_build_fallback_content( array $sections ) {
 function diradev_build_elementor_data( array $sections ) {
 	$data = array();
 
+	// Marge/remplissage à zéro sur les colonnes : notre balisage gère déjà lui-même
+	// ses propres marges via .dr-container, on évite ainsi un double espacement
+	// avec le remplissage par défaut d'Elementor.
+	$no_padding = array(
+		'unit'     => 'px',
+		'top'      => '0',
+		'right'    => '0',
+		'bottom'   => '0',
+		'left'     => '0',
+		'isLinked' => true,
+	);
+
 	foreach ( $sections as $html ) {
 		$data[] = array(
 			'id'       => diradev_elementor_id(),
 			'elType'   => 'section',
-			'settings' => array(),
+			'settings' => array(
+				'content_width' => 'full',
+				'padding'       => $no_padding,
+				'margin'        => $no_padding,
+			),
 			'elements' => array(
 				array(
 					'id'       => diradev_elementor_id(),
 					'elType'   => 'column',
-					'settings' => array( '_column_size' => 100 ),
+					'settings' => array(
+						'_column_size' => 100,
+						'padding'      => $no_padding,
+					),
 					'isInner'  => false,
 					'elements' => array(
 						array(

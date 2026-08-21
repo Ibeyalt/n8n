@@ -183,33 +183,38 @@ img { max-width: 100%; height: auto; display: block; }
 .dr-hero-lead { font-size: 17px; max-width: 520px; margin-bottom: 36px; }
 .dr-hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
 
-.dr-hero-visual { flex: 0 0 440px; position: relative; width: 440px; height: 440px; }
+/* Le visuel héros est un carré fluide : tout ce qu'il contient est positionné
+   en pourcentages (jamais en pixels fixes) pour rester correctement aligné
+   à n'importe quelle largeur, du mobile au grand écran. */
+.dr-hero-visual { flex: 0 0 440px; position: relative; width: 440px; max-width: 100%; aspect-ratio: 1 / 1; }
 .dr-hero-glow { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 50% 45%, rgba(186,255,41,.16), rgba(186,255,41,0) 68%); }
-.dr-hero-ring { position: absolute; left: 36px; top: 36px; right: 36px; bottom: 36px; border-radius: 50%; border: 2px dashed rgba(186,255,41,.4); animation: dr-spin 44s linear infinite; }
+.dr-hero-ring { position: absolute; inset: 8%; border-radius: 50%; border: 2px dashed rgba(186,255,41,.4); animation: dr-spin 44s linear infinite; }
 .dr-hero-photo {
-	position: absolute; left: 120px; top: 120px; width: 200px; height: 200px;
+	position: absolute; left: 27%; top: 27%; width: 46%; height: 46%;
 	border-radius: 50%; overflow: hidden; border: 3px solid var(--dr-accent);
 	box-shadow: 0 0 0 10px rgba(186,255,41,.08);
 }
 .dr-hero-photo img { width: 100%; height: 100%; object-fit: cover; }
 .dr-hero-chip {
-	position: absolute; width: 60px; height: 60px; border-radius: 50%;
+	position: absolute; width: 14%; height: 14%; min-width: 40px; min-height: 40px; max-width: 60px; max-height: 60px;
+	border-radius: 50%;
 	background: var(--dr-paper); display: flex; align-items: center; justify-content: center;
 	box-shadow: 0 8px 20px rgba(0,0,0,.35);
 	animation: dr-float 4.5s ease-in-out infinite;
 }
-.dr-hero-chip svg { width: 24px; height: 24px; stroke: var(--dr-paper-ink); fill: none; stroke-width: 1.6; }
-.dr-hero-chip-1 { left: 24px; top: 56px; animation-delay: 0s; }
-.dr-hero-chip-2 { right: 8px; top: 92px; animation-delay: .7s; }
-.dr-hero-chip-3 { left: 8px; bottom: 88px; animation-delay: 1.4s; }
-.dr-hero-chip-4 { right: 24px; bottom: 52px; animation-delay: 2.1s; }
+.dr-hero-chip svg { width: 42%; height: 42%; stroke: var(--dr-paper-ink); fill: none; stroke-width: 1.6; }
+.dr-hero-chip-1 { left: 5%; top: 13%; animation-delay: 0s; }
+.dr-hero-chip-2 { right: 2%; top: 21%; animation-delay: .7s; }
+.dr-hero-chip-3 { left: 2%; bottom: 20%; animation-delay: 1.4s; }
+.dr-hero-chip-4 { right: 5%; bottom: 12%; animation-delay: 2.1s; }
 .dr-hero-badge {
 	position: absolute; left: 50%; bottom: -8px; transform: translateX(-50%);
 	display: flex; align-items: center; gap: 10px;
-	background: var(--dr-paper); border-radius: 16px; padding: 13px 18px;
+	background: var(--dr-paper); border-radius: 16px; padding: 12px 16px;
 	box-shadow: 0 10px 30px rgba(0,0,0,.4); white-space: nowrap;
+	max-width: 90%;
 }
-.dr-hero-badge span.dr-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--dr-accent); display: inline-block; }
+.dr-hero-badge span.dr-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--dr-accent); display: inline-block; flex: 0 0 auto; }
 .dr-hero-badge span.dr-label { font-family: 'Space Grotesk'; font-weight: 600; font-size: 13px; color: var(--dr-paper-ink); }
 
 @keyframes dr-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -217,8 +222,16 @@ img { max-width: 100%; height: auto; display: block; }
 
 @media (max-width: 980px) {
 	.dr-hero-inner { flex-direction: column; }
-	.dr-hero-visual { width: 100%; max-width: 360px; height: auto; aspect-ratio: 1/1; }
+	.dr-hero-visual { width: 100%; max-width: 360px; margin: 0 auto; }
 	.dr-hero h1 { font-size: 38px; }
+}
+
+@media (max-width: 480px) {
+	.dr-hero { padding: 48px 0 64px; }
+	.dr-hero h1 { font-size: 30px; }
+	.dr-hero-visual { max-width: 300px; }
+	.dr-hero-actions { flex-direction: column; align-items: stretch; }
+	.dr-hero-actions .dr-btn { justify-content: center; }
 }
 
 /* ==========================================================================
@@ -383,5 +396,9 @@ img { max-width: 100%; height: auto; display: block; }
    Animations au scroll
    ========================================================================== */
 
-.dr-reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s cubic-bezier(.16,.84,.44,1), transform .7s cubic-bezier(.16,.84,.44,1); }
-.dr-reveal.is-visible { opacity: 1; transform: none; }
+/* Le contenu est visible par défaut (aucune dépendance au JavaScript pour être vu) :
+   l'état "caché avant animation" n'existe que si le script a pu s'exécuter
+   (classe "dr-js" posée sur <html>). Si le script est bloqué ou en erreur,
+   tout reste normalement affiché. */
+.dr-js .dr-reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s cubic-bezier(.16,.84,.44,1), transform .7s cubic-bezier(.16,.84,.44,1); }
+.dr-js .dr-reveal.is-visible { opacity: 1; transform: none; }

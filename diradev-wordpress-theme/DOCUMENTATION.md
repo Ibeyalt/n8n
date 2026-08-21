@@ -38,10 +38,17 @@ Aucun bouton décoratif : chaque élément cliquable a une vraie destination (pa
 
 ## À savoir sur Elementor
 
-Elementor peut éditer **n'importe quelle page WordPress classique** de ce site sans restriction (Rendez-vous, Œuvres, Contact, pages que vous créez vous-même). En revanche, la page d'accueil (`front-page.php`) est codée directement dans le thème pour garantir un rendu fidèle à 100 % à la maquette validée et un fonctionnement immédiat sans dépendre d'Elementor : elle n'est donc pas éditable en glisser-déposer dans Elementor telle quelle.
+La page d'accueil n'est plus codée en dur dans le thème (il n'y a plus de `front-page.php`). À l'activation, le thème :
 
-Si vous voulez pouvoir modifier l'accueil visuellement dans Elementor, deux options :
-1. Je peux transformer l'accueil en une vraie page Elementor (sections/widgets natifs) — possible, mais je ne peux pas le tester dans un vrai Elementor depuis cet environnement, donc un premier réglage manuel de votre part serait probablement nécessaire après génération.
-2. Recréer l'accueil à la main dans Elementor en suivant le guide déjà fourni dans `diradev-theme/README.md` (structure section par section).
+1. Crée (ou met à jour, une seule fois) une vraie page WordPress intitulée **"Accueil"**.
+2. La définit comme page d'accueil du site (Réglages → Lecture → "Une page statique").
+3. Lui attribue le gabarit **"Elementor Full Width"** (conserve l'en-tête/pied de page du thème).
+4. Génère de vraies données Elementor (7 sections → 1 colonne pleine largeur → 1 widget HTML chacune, reprenant exactement la maquette validée) stockées dans la métadonnée `_elementor_data` de la page.
 
-Dites-moi laquelle vous préférez.
+Résultat : ouvrez "Accueil" avec **Modifier avec Elementor** et vous retrouvez les 7 sections (Héros, Pôles, Mission, Services, Slogan, Process, Appel à l'action) comme des blocs Elementor déplaçables, duplicables, supprimables — vous pouvez aussi ajouter n'importe quel widget Elementor à côté.
+
+**Vérification effectuée** : un test isolé (`inc/homepage-content.php` + `inc/homepage-setup.php` exécutés hors WordPress) confirme que le JSON généré est valide, contient bien 7 sections avec identifiants uniques correctement formés, et que chaque widget HTML contient un contenu non vide. Je n'ai en revanche pas pu ouvrir cette page dans un vrai éditeur Elementor depuis cet environnement (aucune instance WordPress+Elementor disponible ici) : après import, ouvrez la page une première fois dans Elementor et cliquez sur **Mettre à jour** — si un réglage mineur (espacement, largeur) doit être ajusté, ce sera visible et corrigible immédiatement dans l'éditeur.
+
+**Sécurité de repli** : si Elementor est désactivé, désinstallé, ou si vous éditez "Accueil" sans Elementor, la page affiche automatiquement le même contenu via `page.php` (blocs HTML natifs WordPress) — jamais de page blanche.
+
+Les autres pages (Rendez-vous, Œuvres, Contact, et toute page que vous créez) restent éditables dans Elementor sans aucune restriction particulière, comme sur n'importe quel thème standard.

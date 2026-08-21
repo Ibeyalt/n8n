@@ -48,6 +48,8 @@ function diradev_scripts() {
 add_action( 'wp_enqueue_scripts', 'diradev_scripts' );
 
 require DIRADEV_DIR . '/inc/template-tags.php';
+require DIRADEV_DIR . '/inc/homepage-content.php';
+require DIRADEV_DIR . '/inc/homepage-setup.php';
 
 /**
  * Crée un menu principal par défaut à l'activation, sans jamais écraser

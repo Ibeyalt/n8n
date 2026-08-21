@@ -52,3 +52,8 @@ Résultat : ouvrez "Accueil" avec **Modifier avec Elementor** et vous retrouvez 
 **Sécurité de repli** : si Elementor est désactivé, désinstallé, ou si vous éditez "Accueil" sans Elementor, la page affiche automatiquement le même contenu via `page.php` (blocs HTML natifs WordPress) — jamais de page blanche.
 
 Les autres pages (Rendez-vous, Œuvres, Contact, et toute page que vous créez) restent éditables dans Elementor sans aucune restriction particulière, comme sur n'importe quel thème standard.
+
+## Historique des versions
+
+- **1.1.0** — Correction des bugs d'affichage mobile/tablette (visuel héros en pourcentages au lieu de pixels fixes), correction du script qui restait inactif (menu mobile, animations), numéro de version incrémenté pour forcer le rechargement du CSS/JS en cache par le navigateur.
+- **1.0.0** — Version initiale : thème fonctionnel, page d'accueil générée avec données Elementor natives.

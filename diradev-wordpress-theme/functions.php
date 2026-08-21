@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'DIRADEV_VERSION', '1.0.0' );
+define( 'DIRADEV_VERSION', '1.1.0' );
 define( 'DIRADEV_DIR', get_template_directory() );
 define( 'DIRADEV_URI', get_template_directory_uri() );
 

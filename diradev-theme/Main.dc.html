@@ -26,6 +26,17 @@
     .btn:hover { transform: translateY(-2px); opacity: .92; }
     .row-link:hover .arrow-chip { background: #baff29; }
     .row-link:hover .arrow-chip svg { stroke: #12140f; }
+
+    .dr-reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .8s cubic-bezier(.16,.84,.44,1), transform .8s cubic-bezier(.16,.84,.44,1);
+    }
+    .dr-reveal.is-visible { opacity: 1; transform: none; }
+    @keyframes dr-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes dr-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .dr-ring { animation: dr-spin 44s linear infinite; }
+    .dr-chip { animation: dr-float 4.5s ease-in-out infinite; }
   </style>
 </helmet>
 
@@ -51,7 +62,7 @@
 
   <!-- HERO -->
   <div style="display:flex;align-items:center;gap:64px;padding:88px 96px 96px;">
-    <div style="flex:1 1 0;min-width:0;">
+    <div class="dr-reveal" style="flex:1 1 0;min-width:0;">
       <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:1px solid rgba(186,255,41,0.35);border-radius:100px;margin-bottom:28px;">
         <span style="width:6px;height:6px;border-radius:50%;background:{{accent}};display:inline-block;"></span>
         <span style="font-size:13px;font-weight:600;letter-spacing:1px;color:{{accent}};text-transform:uppercase;">Agence Digitale &amp; Automatisation IA</span>
@@ -69,25 +80,25 @@
     </div>
 
     <!-- hero visual -->
-    <div style="flex:0 0 480px;position:relative;width:480px;height:480px;">
+    <div class="dr-reveal" style="transition-delay:.15s;flex:0 0 480px;position:relative;width:480px;height:480px;">
       <div style="position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 50% 45%, rgba(186,255,41,0.16), rgba(186,255,41,0) 68%);"></div>
-      <div style="position:absolute;left:40px;top:40px;right:40px;bottom:40px;border-radius:50%;border:2px dashed rgba(186,255,41,0.4);"></div>
+      <div class="dr-ring" style="position:absolute;left:40px;top:40px;right:40px;bottom:40px;border-radius:50%;border:2px dashed rgba(186,255,41,0.4);"></div>
 
-      <div style="position:absolute;left:140px;top:140px;width:200px;height:200px;border-radius:32px;background:linear-gradient(155deg,#1a2019,#0e120f);border:1px solid rgba(245,247,239,0.1);display:flex;align-items:center;justify-content:center;">
-        <span style="font-family:'Space Grotesk';font-weight:700;font-size:64px;color:{{accent}};">D</span>
+      <div style="position:absolute;left:130px;top:130px;width:220px;height:220px;border-radius:50%;overflow:hidden;border:3px solid {{accent}};box-shadow:0 0 0 10px rgba(186,255,41,0.08);">
+        <img src="founder-photo.jpg" alt="Fondateur DIRADEV" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
 
       <!-- icon chips around ring -->
-      <div style="position:absolute;left:36px;top:64px;width:64px;height:64px;border-radius:50%;background:#f5f7ef;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.35);">
+      <div class="dr-chip" style="position:absolute;left:36px;top:64px;width:64px;height:64px;border-radius:50%;background:#f5f7ef;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.35);animation-delay:0s;">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#12140f" stroke-width="1.6"><rect x="4" y="8" width="16" height="12" rx="2"></rect><path d="M8 8V6a4 4 0 0 1 8 0v2"></path><circle cx="9" cy="14" r="1"></circle><circle cx="15" cy="14" r="1"></circle></svg>
       </div>
-      <div style="position:absolute;right:20px;top:100px;width:64px;height:64px;border-radius:50%;background:#f5f7ef;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.35);">
+      <div class="dr-chip" style="position:absolute;right:20px;top:100px;width:64px;height:64px;border-radius:50%;background:#f5f7ef;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.35);animation-delay:.7s;">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#12140f" stroke-width="1.6"><polyline points="9 8 4 13 9 18"></polyline><polyline points="15 8 20 13 15 18"></polyline></svg>
       </div>
-      <div style="position:absolute;left:20px;bottom:96px;width:64px;height:64px;border-radius:50%;background:#f5f7ef;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.35);">
+      <div class="dr-chip" style="position:absolute;left:20px;bottom:96px;width:64px;height:64px;border-radius:50%;background:#f5f7ef;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.35);animation-delay:1.4s;">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#12140f" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.5 2.6 3.8 6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-6-3.8-9s1.3-6.4 3.8-9z"></path></svg>
       </div>
-      <div style="position:absolute;right:36px;bottom:60px;width:64px;height:64px;border-radius:50%;background:#f5f7ef;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.35);">
+      <div class="dr-chip" style="position:absolute;right:36px;bottom:60px;width:64px;height:64px;border-radius:50%;background:#f5f7ef;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.35);animation-delay:2.1s;">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#12140f" stroke-width="1.6"><path d="M3 3v18h18"></path><path d="M7 15l4-5 3 3 5-7"></path></svg>
       </div>
 
@@ -99,7 +110,7 @@
   </div>
 
   <!-- PILLARS BAR -->
-  <div style="margin:0 96px 120px;background:#151a16;border-radius:24px;padding:36px 48px;display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:24px;">
+  <div class="dr-reveal" style="margin:0 96px 120px;background:#151a16;border-radius:24px;padding:36px 48px;display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:24px;">
     <div style="display:flex;align-items:center;gap:16px;">
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"></rect><path d="M8 21h8M12 18v3"></path></svg>
       <div><div style="font-family:'Space Grotesk';font-weight:600;font-size:15px;color:#f5f7ef;">Sites &amp; Applications</div><div style="font-size:13px;color:#a9b3a6;">Web &amp; mobile sur mesure</div></div>
@@ -120,14 +131,14 @@
 
   <!-- MISSION / VISUAL PANELS -->
   <div style="display:flex;gap:64px;padding:0 96px 120px;align-items:flex-start;">
-    <div style="flex:0 0 420px;">
+    <div class="dr-reveal" style="flex:0 0 420px;">
       <div style="display:inline-block;font-size:13px;font-weight:700;letter-spacing:1px;color:{{accent}};text-transform:uppercase;margin-bottom:18px;">Notre mission</div>
       <h2 style="font-size:36px;line-height:1.2;font-weight:700;margin:0 0 20px;color:#f5f7ef;">Une agence, quatre expertises, un seul objectif</h2>
       <p style="font-size:16px;line-height:1.7;color:#a9b3a6;margin:0;">
         Chez DIRADEV, nous réunissons développement, marketing, intelligence artificielle et sourcing sous un même toit pour que votre entreprise avance plus vite, sans multiplier les prestataires.
       </p>
     </div>
-    <div style="flex:1 1 0;display:grid;grid-template-columns:1.2fr 1fr;gap:20px;position:relative;">
+    <div class="dr-reveal" style="transition-delay:.1s;flex:1 1 0;display:grid;grid-template-columns:1.2fr 1fr;gap:20px;position:relative;">
       <div style="height:360px;border-radius:24px;background:linear-gradient(160deg,#1a231b,#0e120f 70%);border:1px solid rgba(245,247,239,0.08);position:relative;overflow:hidden;">
         <div style="position:absolute;inset:24px;border-radius:14px;background:#12140f;border:1px solid rgba(245,247,239,0.08);padding:20px;">
           <div style="display:flex;gap:6px;margin-bottom:16px;">
@@ -155,7 +166,7 @@
 
   <!-- SERVICES -->
   <div style="padding:0 96px 120px;">
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;">
+    <div class="dr-reveal" style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;">
       <div>
         <div style="font-size:13px;font-weight:700;letter-spacing:1px;color:{{accent}};text-transform:uppercase;margin-bottom:18px;">Nos services</div>
         <h2 style="font-size:38px;font-weight:700;margin:0;color:#f5f7ef;max-width:640px;line-height:1.2;">Quatre expertises pour faire grandir votre entreprise</h2>
@@ -164,7 +175,7 @@
     </div>
 
     <div style="display:flex;gap:56px;align-items:stretch;">
-      <div style="flex:1 1 0;display:flex;flex-direction:column;">
+      <div class="dr-reveal" style="flex:1 1 0;display:flex;flex-direction:column;">
         <div class="row-link" style="display:flex;align-items:center;justify-content:space-between;padding:26px 0;border-top:1px solid rgba(245,247,239,0.1);">
           <div style="display:flex;align-items:baseline;gap:22px;">
             <span style="font-family:'Space Grotesk';font-weight:700;font-size:16px;color:{{accent}};">01</span>
@@ -203,7 +214,7 @@
         </div>
       </div>
 
-      <div style="flex:0 0 340px;display:flex;flex-direction:column;gap:20px;">
+      <div class="dr-reveal" style="transition-delay:.15s;flex:0 0 340px;display:flex;flex-direction:column;gap:20px;">
         <div style="background:#f5f7ef;border-radius:20px;padding:26px;flex:1;display:flex;flex-direction:column;justify-content:space-between;">
           <div>
             <div style="font-family:'Space Grotesk';font-weight:700;font-size:17px;color:#12140f;margin-bottom:8px;">Une idée de projet ?</div>
@@ -228,11 +239,11 @@
 
   <!-- TAGLINE BANNER -->
   <div style="display:flex;align-items:center;justify-content:center;gap:28px;padding:64px 0;border-top:1px solid rgba(245,247,239,0.08);border-bottom:1px solid rgba(245,247,239,0.08);">
-    <span style="font-family:'Space Grotesk';font-weight:700;font-size:44px;color:#f5f7ef;">Innover</span>
+    <span class="dr-reveal" style="transition-delay:0s;font-family:'Space Grotesk';font-weight:700;font-size:44px;color:#f5f7ef;">Innover</span>
     <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2.4"><path d="M12 4v16M4 12h16"></path></svg>
-    <span style="font-family:'Space Grotesk';font-weight:700;font-size:44px;color:#f5f7ef;">Automatiser</span>
+    <span class="dr-reveal" style="transition-delay:.12s;font-family:'Space Grotesk';font-weight:700;font-size:44px;color:#f5f7ef;">Automatiser</span>
     <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2.4"><path d="M12 4v16M4 12h16"></path></svg>
-    <span style="font-family:'Space Grotesk';font-weight:700;font-size:44px;color:#f5f7ef;">Croître</span>
+    <span class="dr-reveal" style="transition-delay:.24s;font-family:'Space Grotesk';font-weight:700;font-size:44px;color:#f5f7ef;">Croître</span>
   </div>
 
   <!-- PROCESS -->
@@ -242,22 +253,22 @@
       <h2 style="font-size:38px;font-weight:700;margin:0;color:#f5f7ef;">Comment nous travaillons ensemble</h2>
     </div>
     <div style="display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:24px;">
-      <div style="background:#151a16;border-radius:20px;padding:32px 26px;">
+      <div class="dr-reveal" style="transition-delay:0s;background:#151a16;border-radius:20px;padding:32px 26px;">
         <div style="font-family:'Space Grotesk';font-weight:700;font-size:15px;color:{{accent}};margin-bottom:22px;">01</div>
         <div style="font-family:'Space Grotesk';font-weight:600;font-size:18px;color:#f5f7ef;margin-bottom:10px;">Découverte</div>
         <div style="font-size:14px;color:#a9b3a6;line-height:1.6;">On échange sur vos objectifs, vos contraintes et vos priorités.</div>
       </div>
-      <div style="background:#151a16;border-radius:20px;padding:32px 26px;">
+      <div class="dr-reveal" style="transition-delay:.1s;background:#151a16;border-radius:20px;padding:32px 26px;">
         <div style="font-family:'Space Grotesk';font-weight:700;font-size:15px;color:{{accent}};margin-bottom:22px;">02</div>
         <div style="font-family:'Space Grotesk';font-weight:600;font-size:18px;color:#f5f7ef;margin-bottom:10px;">Stratégie</div>
         <div style="font-size:14px;color:#a9b3a6;line-height:1.6;">Nous définissons la solution et la feuille de route adaptées.</div>
       </div>
-      <div style="background:#151a16;border-radius:20px;padding:32px 26px;">
+      <div class="dr-reveal" style="transition-delay:.2s;background:#151a16;border-radius:20px;padding:32px 26px;">
         <div style="font-family:'Space Grotesk';font-weight:700;font-size:15px;color:{{accent}};margin-bottom:22px;">03</div>
         <div style="font-family:'Space Grotesk';font-weight:600;font-size:18px;color:#f5f7ef;margin-bottom:10px;">Réalisation</div>
         <div style="font-size:14px;color:#a9b3a6;line-height:1.6;">Développement, création ou automatisation, avec des points réguliers.</div>
       </div>
-      <div style="background:#151a16;border-radius:20px;padding:32px 26px;">
+      <div class="dr-reveal" style="transition-delay:.3s;background:#151a16;border-radius:20px;padding:32px 26px;">
         <div style="font-family:'Space Grotesk';font-weight:700;font-size:15px;color:{{accent}};margin-bottom:22px;">04</div>
         <div style="font-family:'Space Grotesk';font-weight:600;font-size:18px;color:#f5f7ef;margin-bottom:10px;">Suivi</div>
         <div style="font-size:14px;color:#a9b3a6;line-height:1.6;">On reste à vos côtés pour ajuster et faire évoluer votre solution.</div>
@@ -266,7 +277,7 @@
   </div>
 
   <!-- CTA -->
-  <div style="margin:0 96px 96px;background:{{accent}};border-radius:32px;padding:80px 96px;position:relative;overflow:hidden;">
+  <div class="dr-reveal" style="margin:0 96px 96px;background:{{accent}};border-radius:32px;padding:80px 96px;position:relative;overflow:hidden;">
     <div style="position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;background:rgba(18,20,15,0.08);"></div>
     <div style="max-width:640px;position:relative;">
       <h2 style="font-family:'Space Grotesk';font-weight:700;font-size:42px;line-height:1.15;color:#12140f;margin:0 0 20px;">Prêt à passer au niveau supérieur ?</h2>
@@ -318,6 +329,32 @@
   </div>
 
 </div>
+<script>
+(function () {
+  function init() {
+    var els = document.querySelectorAll('.dr-reveal');
+    if (!els.length) { return; }
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (e) { e.classList.add('is-visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    els.forEach(function (e) { io.observe(e); });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
 </x-dc>
 <script data-dc-script data-props='{"accent":{"editor":"color","default":"#baff29","options":["#baff29","#9AE600","#7CFFB2","#C6FF6B"]}}'>
 class Component extends DCLogic {

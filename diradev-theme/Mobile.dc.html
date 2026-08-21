@@ -22,6 +22,17 @@
     h1, h2, h3, .disp { font-family: 'Space Grotesk', system-ui, sans-serif; }
     a { color: #baff29; text-decoration: none; }
     a:hover { color: #d6ff7a; }
+
+    .dr-reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s cubic-bezier(.16,.84,.44,1), transform .7s cubic-bezier(.16,.84,.44,1);
+    }
+    .dr-reveal.is-visible { opacity: 1; transform: none; }
+    @keyframes dr-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes dr-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    .dr-ring { animation: dr-spin 44s linear infinite; }
+    .dr-chip { animation: dr-float 4.5s ease-in-out infinite; }
   </style>
 </helmet>
 
@@ -61,27 +72,27 @@
     <!-- hero visual -->
     <div style="position:relative;width:100%;aspect-ratio:1/1;max-width:340px;margin:0 auto;">
       <div style="position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 50% 45%, rgba(186,255,41,0.16), rgba(186,255,41,0) 68%);"></div>
-      <div style="position:absolute;left:12%;top:12%;right:12%;bottom:12%;border-radius:50%;border:2px dashed rgba(186,255,41,0.4);"></div>
-      <div style="position:absolute;left:29%;top:29%;width:42%;height:42%;border-radius:26px;background:linear-gradient(155deg,#1a2019,#0e120f);border:1px solid rgba(245,247,239,0.1);display:flex;align-items:center;justify-content:center;">
-        <span style="font-family:'Space Grotesk';font-weight:700;font-size:44px;color:{{accent}};">D</span>
+      <div class="dr-ring" style="position:absolute;left:12%;top:12%;right:12%;bottom:12%;border-radius:50%;border:2px dashed rgba(186,255,41,0.4);"></div>
+      <div style="position:absolute;left:29%;top:29%;width:42%;height:42%;border-radius:50%;overflow:hidden;border:3px solid {{accent}};box-shadow:0 0 0 8px rgba(186,255,41,0.08);">
+        <img src="founder-photo-mobile.jpg" alt="Fondateur DIRADEV" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
-      <div style="position:absolute;left:4%;top:18%;width:50px;height:50px;border-radius:50%;background:#f5f7ef;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.35);">
+      <div class="dr-chip" style="position:absolute;left:4%;top:18%;width:50px;height:50px;border-radius:50%;background:#f5f7ef;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.35);animation-delay:0s;">
         <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#12140f" stroke-width="1.6"><rect x="4" y="8" width="16" height="12" rx="2"></rect><path d="M8 8V6a4 4 0 0 1 8 0v2"></path><circle cx="9" cy="14" r="1"></circle><circle cx="15" cy="14" r="1"></circle></svg>
       </div>
-      <div style="position:absolute;right:2%;top:26%;width:50px;height:50px;border-radius:50%;background:#f5f7ef;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.35);">
+      <div class="dr-chip" style="position:absolute;right:2%;top:26%;width:50px;height:50px;border-radius:50%;background:#f5f7ef;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.35);animation-delay:.7s;">
         <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#12140f" stroke-width="1.6"><polyline points="9 8 4 13 9 18"></polyline><polyline points="15 8 20 13 15 18"></polyline></svg>
       </div>
-      <div style="position:absolute;left:2%;bottom:24%;width:50px;height:50px;border-radius:50%;background:#f5f7ef;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.35);">
+      <div class="dr-chip" style="position:absolute;left:2%;bottom:24%;width:50px;height:50px;border-radius:50%;background:#f5f7ef;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.35);animation-delay:1.4s;">
         <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#12140f" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.5 2.6 3.8 6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-6-3.8-9s1.3-6.4 3.8-9z"></path></svg>
       </div>
-      <div style="position:absolute;right:4%;bottom:16%;width:50px;height:50px;border-radius:50%;background:#f5f7ef;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.35);">
+      <div class="dr-chip" style="position:absolute;right:4%;bottom:16%;width:50px;height:50px;border-radius:50%;background:#f5f7ef;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.35);animation-delay:2.1s;">
         <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#12140f" stroke-width="1.6"><path d="M3 3v18h18"></path><path d="M7 15l4-5 3 3 5-7"></path></svg>
       </div>
     </div>
   </div>
 
   <!-- PILLARS -->
-  <div style="margin:0 24px 56px;background:#151a16;border-radius:20px;padding:24px;display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:22px;">
+  <div class="dr-reveal" style="margin:0 24px 56px;background:#151a16;border-radius:20px;padding:24px;display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:22px;">
     <div style="display:flex;flex-direction:column;gap:10px;">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"></rect><path d="M8 21h8M12 18v3"></path></svg>
       <div style="font-family:'Space Grotesk';font-weight:600;font-size:13px;color:#f5f7ef;">Sites &amp; Apps</div>
@@ -101,7 +112,7 @@
   </div>
 
   <!-- MISSION -->
-  <div style="padding:0 24px 56px;">
+  <div class="dr-reveal" style="padding:0 24px 56px;">
     <div style="font-size:12px;font-weight:700;letter-spacing:1px;color:{{accent}};text-transform:uppercase;margin-bottom:14px;">Notre mission</div>
     <h2 style="font-size:26px;line-height:1.2;font-weight:700;margin:0 0 14px;color:#f5f7ef;">Une agence, quatre expertises, un seul objectif</h2>
     <p style="font-size:14px;line-height:1.65;color:#a9b3a6;margin:0 0 28px;">
@@ -118,7 +129,7 @@
   </div>
 
   <!-- SERVICES -->
-  <div style="padding:0 24px 56px;">
+  <div class="dr-reveal" style="padding:0 24px 56px;">
     <div style="font-size:12px;font-weight:700;letter-spacing:1px;color:{{accent}};text-transform:uppercase;margin-bottom:14px;">Nos services</div>
     <h2 style="font-size:26px;font-weight:700;margin:0 0 28px;color:#f5f7ef;line-height:1.2;">Quatre expertises pour votre croissance</h2>
 
@@ -191,7 +202,7 @@
   </div>
 
   <!-- CTA -->
-  <div style="margin:0 24px 56px;background:{{accent}};border-radius:24px;padding:40px 28px;position:relative;overflow:hidden;">
+  <div class="dr-reveal" style="margin:0 24px 56px;background:{{accent}};border-radius:24px;padding:40px 28px;position:relative;overflow:hidden;">
     <div style="position:absolute;right:-40px;top:-40px;width:150px;height:150px;border-radius:50%;background:rgba(18,20,15,0.08);"></div>
     <h2 style="font-family:'Space Grotesk';font-weight:700;font-size:26px;line-height:1.18;color:#12140f;margin:0 0 14px;position:relative;">Prêt à passer au niveau supérieur ?</h2>
     <p style="font-size:14px;color:#12140f;opacity:0.75;line-height:1.55;margin:0 0 24px;position:relative;">Discutons de votre projet, digital ou IA.</p>
@@ -220,6 +231,32 @@
   </div>
 
 </div>
+<script>
+(function () {
+  function init() {
+    var els = document.querySelectorAll('.dr-reveal');
+    if (!els.length) { return; }
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (e) { e.classList.add('is-visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    els.forEach(function (e) { io.observe(e); });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
 </x-dc>
 <script data-dc-script data-props='{"accent":{"editor":"color","default":"#baff29","options":["#baff29","#9AE600","#7CFFB2","#C6FF6B"]}}'>
 class Component extends DCLogic {

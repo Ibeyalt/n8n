@@ -1,0 +1,340 @@
+/* Dira Booking & Files — styles front-end, entièrement namespacés
+   (.dira-booking-* / .dira-files-*) pour ne jamais dépendre du thème actif. */
+
+:root {
+	--dira-bf-accent: #4f46e5;
+	--dira-bf-ink: #14161a;
+	--dira-bf-muted: #6b7280;
+	--dira-bf-line: #e5e7eb;
+	--dira-bf-bg: #ffffff;
+	--dira-bf-bg-soft: #f8f9fb;
+	--dira-bf-radius: 14px;
+	--dira-bf-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.dira-booking-app,
+.dira-files-app {
+	all: revert;
+	box-sizing: border-box;
+	font-family: var(--dira-bf-font);
+	color: var(--dira-bf-ink);
+	max-width: 880px;
+	margin: 0 auto;
+	line-height: 1.5;
+}
+.dira-booking-app *, .dira-files-app *,
+.dira-booking-app *::before, .dira-files-app *::before,
+.dira-booking-app *::after, .dira-files-app *::after { box-sizing: border-box; }
+
+.dira-booking-app button,
+.dira-files-app button { font-family: inherit; }
+
+/* ---------- Progression ---------- */
+
+.dira-booking-progress {
+	display: flex;
+	list-style: none;
+	margin: 0 0 28px;
+	padding: 0;
+	gap: 8px;
+}
+.dira-booking-progress-item {
+	flex: 1;
+	text-align: center;
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--dira-bf-muted);
+	padding-bottom: 10px;
+	border-bottom: 3px solid var(--dira-bf-line);
+}
+.dira-booking-progress-item.is-active,
+.dira-booking-progress-item.is-done {
+	color: var(--dira-bf-accent);
+	border-bottom-color: var(--dira-bf-accent);
+}
+
+.dira-booking-step-title,
+.dira-files-step-title {
+	font-size: 20px;
+	font-weight: 700;
+	margin: 0 0 18px;
+}
+
+/* ---------- Alerts ---------- */
+
+.dira-booking-alert,
+.dira-files-alert {
+	padding: 12px 16px;
+	border-radius: 10px;
+	margin-bottom: 16px;
+	font-size: 14px;
+	background: #fef2f2;
+	color: #991b1b;
+	border: 1px solid #fecaca;
+}
+.dira-booking-alert.is-success,
+.dira-files-alert.is-success {
+	background: #f0fdf4;
+	color: #166534;
+	border-color: #bbf7d0;
+}
+
+/* ---------- Services ---------- */
+
+.dira-booking-service-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+	gap: 14px;
+}
+.dira-booking-service-card {
+	text-align: left;
+	background: var(--dira-bf-bg);
+	border: 1px solid var(--dira-bf-line);
+	border-top: 4px solid var(--dira-service-color, var(--dira-bf-accent));
+	border-radius: var(--dira-bf-radius);
+	padding: 18px;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	transition: box-shadow .15s ease, transform .15s ease;
+}
+.dira-booking-service-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.08); transform: translateY(-2px); }
+.dira-booking-service-name { font-weight: 700; font-size: 16px; }
+.dira-booking-service-meta { font-size: 13px; color: var(--dira-bf-muted); }
+.dira-booking-service-desc { font-size: 13px; color: var(--dira-bf-muted); }
+
+/* ---------- Champs ---------- */
+
+.dira-booking-field,
+.dira-files-field {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	font-size: 13px;
+	font-weight: 600;
+	margin-bottom: 14px;
+}
+.dira-booking-field input,
+.dira-booking-field textarea,
+.dira-files-field input {
+	font: inherit;
+	font-weight: 400;
+	padding: 11px 12px;
+	border: 1px solid var(--dira-bf-line);
+	border-radius: 10px;
+	background: var(--dira-bf-bg);
+	color: var(--dira-bf-ink);
+	width: 100%;
+}
+.dira-booking-field input:focus,
+.dira-booking-field textarea:focus,
+.dira-files-field input:focus {
+	outline: 2px solid var(--dira-bf-accent);
+	outline-offset: 1px;
+}
+
+.dira-booking-form-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0 16px;
+}
+.dira-booking-field-full { grid-column: 1 / -1; }
+
+/* ---------- Créneaux ---------- */
+
+.dira-booking-slots {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin: 16px 0;
+	min-height: 20px;
+}
+.dira-booking-slot {
+	border: 1px solid var(--dira-bf-line);
+	background: var(--dira-bf-bg);
+	border-radius: 10px;
+	padding: 9px 14px;
+	cursor: pointer;
+	font-weight: 600;
+	font-size: 13px;
+}
+.dira-booking-slot:hover { border-color: var(--dira-bf-accent); }
+.dira-booking-slot.is-selected { background: var(--dira-bf-accent); border-color: var(--dira-bf-accent); color: #fff; }
+.dira-booking-loading, .dira-booking-empty, .dira-files-empty { color: var(--dira-bf-muted); font-size: 14px; }
+
+/* ---------- Navigation / boutons ---------- */
+
+.dira-booking-nav { display: flex; justify-content: space-between; margin-top: 22px; gap: 10px; }
+
+.dira-booking-btn,
+.dira-files-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border: none;
+	border-radius: 100px;
+	padding: 12px 24px;
+	font-weight: 700;
+	font-size: 14px;
+	cursor: pointer;
+	background: var(--dira-bf-bg-soft);
+	color: var(--dira-bf-ink);
+}
+.dira-booking-btn-primary,
+.dira-files-btn { background: var(--dira-bf-accent); color: #fff; }
+.dira-booking-btn-ghost { background: transparent; border: 1px solid var(--dira-bf-line); }
+.dira-booking-btn:disabled, .dira-files-btn:disabled { opacity: .6; cursor: not-allowed; }
+
+/* ---------- Récapitulatif ---------- */
+
+.dira-booking-recap dl { display: grid; grid-template-columns: 140px 1fr; gap: 8px 12px; margin: 0; }
+.dira-booking-recap dt { color: var(--dira-bf-muted); font-size: 13px; }
+.dira-booking-recap dd { margin: 0; font-weight: 600; }
+
+.dira-booking-success h3 { font-size: 22px; margin-bottom: 8px; }
+.dira-booking-success p { color: var(--dira-bf-muted); }
+
+/* ---------- Mes rendez-vous ---------- */
+
+.dira-booking-lookup-form,
+.dira-files-lookup-form { display: flex; gap: 10px; margin-bottom: 16px; }
+.dira-booking-lookup-form input,
+.dira-files-lookup-form input {
+	flex: 1;
+	padding: 11px 12px;
+	border: 1px solid var(--dira-bf-line);
+	border-radius: 10px;
+}
+.dira-booking-list-item,
+.dira-files-list-item {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 14px;
+	align-items: center;
+	padding: 12px 0;
+	border-bottom: 1px solid var(--dira-bf-line);
+	font-size: 14px;
+}
+.dira-booking-status {
+	padding: 3px 10px;
+	border-radius: 100px;
+	background: var(--dira-bf-bg-soft);
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: capitalize;
+}
+
+/* ---------- Grille de fichiers ---------- */
+
+.dira-files-app { max-width: 1100px; }
+
+.dira-files-toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-bottom: 24px;
+}
+.dira-files-toolbar select,
+.dira-files-search {
+	padding: 10px 12px;
+	border: 1px solid var(--dira-bf-line);
+	border-radius: 10px;
+	font: inherit;
+}
+.dira-files-search { flex: 1; min-width: 200px; }
+
+.dira-files-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+	gap: 18px;
+}
+
+.dira-files-card {
+	background: var(--dira-bf-bg);
+	border: 1px solid var(--dira-bf-line);
+	border-radius: var(--dira-bf-radius);
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+
+.dira-files-cover {
+	position: relative;
+	aspect-ratio: 4 / 3;
+	background: var(--dira-bf-bg-soft);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.dira-files-cover img { width: 100%; height: 100%; object-fit: cover; }
+.dira-files-cover-placeholder { font-weight: 800; font-size: 22px; color: var(--dira-bf-muted); letter-spacing: 1px; }
+
+.dira-files-badge {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: #111827;
+	color: #fff;
+	font-size: 11px;
+	font-weight: 700;
+	padding: 4px 10px;
+	border-radius: 100px;
+}
+.dira-files-badge.is-free { background: #16a34a; }
+.dira-files-badge.is-paid { background: var(--dira-bf-accent); }
+
+.dira-files-body { padding: 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.dira-files-title { font-size: 15px; font-weight: 700; margin: 0; }
+.dira-files-desc { font-size: 13px; color: var(--dira-bf-muted); margin: 0; flex: 1; }
+.dira-files-meta { display: flex; gap: 10px; font-size: 12px; color: var(--dira-bf-muted); margin: 0; }
+.dira-files-body .dira-files-btn { margin-top: auto; }
+
+/* ---------- Fiche unique ---------- */
+
+.dira-files-single-card { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+.dira-files-single-cover { aspect-ratio: 4/3; background: var(--dira-bf-bg-soft); border-radius: var(--dira-bf-radius); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.dira-files-single-cover img { width: 100%; height: 100%; object-fit: cover; }
+.dira-files-single-title { font-size: 26px; margin: 0 0 10px; }
+.dira-files-single-meta { display: flex; flex-wrap: wrap; gap: 12px; font-size: 13px; color: var(--dira-bf-muted); margin-bottom: 14px; }
+.dira-files-single-desc { color: var(--dira-bf-ink); margin-bottom: 18px; }
+.dira-files-single-price { font-size: 22px; font-weight: 800; margin-bottom: 14px; }
+
+/* ---------- Modale d'achat ---------- */
+
+.dira-files-modal {
+	position: fixed;
+	inset: 0;
+	background: rgba(15, 17, 21, .55);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 100000;
+	padding: 20px;
+}
+.dira-files-modal-content {
+	background: var(--dira-bf-bg);
+	border-radius: var(--dira-bf-radius);
+	padding: 26px;
+	max-width: 420px;
+	width: 100%;
+	position: relative;
+}
+.dira-files-modal-close {
+	position: absolute;
+	top: 12px;
+	right: 14px;
+	background: none;
+	border: none;
+	font-size: 22px;
+	cursor: pointer;
+	color: var(--dira-bf-muted);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 760px) {
+	.dira-booking-form-grid { grid-template-columns: 1fr; }
+	.dira-files-single-card { grid-template-columns: 1fr; }
+	.dira-booking-progress-item { font-size: 11px; }
+}
